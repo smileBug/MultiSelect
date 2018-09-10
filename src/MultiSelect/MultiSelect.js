@@ -25,6 +25,13 @@ class MultiSelectField extends Component {
         this.selectIds = [...oldSelectId, ...addItems];
       }
     }
+    if (nextProps.value !== this.props.value) {
+      if (nextProps.value.indexOf('all') === -1) {
+        this.selectIds = nextProps.value;
+      } else {
+        this.selectIds = ['all'];
+      }
+    }
   }
   @action changeSelectIds = value => {
     this.selectIds = value;
@@ -72,7 +79,7 @@ class MultiSelectField extends Component {
   }
 
   render() {
-    const {options, wrapStyle, label, reset, opposite, defaultOption, moreOptionIds, ...other} = this.props;
+    const {options, wrapStyle, label, reset, opposite, defaultOption, moreOptionIds, value, ...other} = this.props;
     let finalOptions = _.map(options, option => (
       <Option key={option.key}>{option.name}</Option>
     ));
