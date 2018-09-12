@@ -25,7 +25,7 @@ class MultiSelectField extends Component {
         this.selectIds = [...oldSelectId, ...addItems];
       }
     }
-    if (nextProps.value !== this.props.value) {
+    if (nextProps.value && nextProps.value !== this.props.value) {
       if (nextProps.value.indexOf('all') === -1) {
         this.selectIds = nextProps.value;
       } else {
